@@ -1,7 +1,7 @@
-1. starting a new task/feature = create a new branch via git branch <branchname>
-2. git checkout into new branch
-3. complete work
-4. when work is finished, git add . & git commit -m <branchname>
-5. git pull origin master
-6. git push origin <branchname>
-7. go to github and open Pull Request 
+1. starting a new task/feature = create a new branch, add, commit, pull, push
+2. git branch <branchname>
+3. git checkout <branchname>
+3. while working git add. &&& git commit -m <creates...>
+4. git pull origin master
+5. git push origin <branchname>
+6. go to github and open Pull Request 

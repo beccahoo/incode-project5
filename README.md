@@ -1,7 +1,7 @@
 1. clone repo
 
 ```bash
-git clone https://github.com/beccahoo/incode_project5.git
+git clone https://github.com/beccahoo/incode-project5.git
 ```
 
 2. install dependencies
