@@ -3,7 +3,7 @@
     <ul class="results">
         <%results.forEach(result =>{%>
             <li class="result-item">
-                <a href="/movieinfo">
+                <a href="/movieinfo/<%=result.id%>">
                     <img class="result-item-image" src="<%=imageBaseUrl+result.poster_path%>" alt="image">
                     <h3>Title: <%=result.original_title%></h3>
                     <div class="movie-details">
