@@ -4,7 +4,7 @@ const express = require('express');
 //import fetch from 'node-fetch';
 const axios = require('axios');
 const expressLayouts = require('express-ejs-layouts')
-
+const loginRouter = require('./routes/login')
 const app = express();
 
 //setting view enginne and layouts
@@ -21,7 +21,8 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-
+//route middleware
+app.use('/login', loginRouter)
 
 //api details
 const url = "https://api.themoviedb.org/3";
