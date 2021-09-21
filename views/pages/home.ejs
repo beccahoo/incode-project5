@@ -1,0 +1,82 @@
+<div class="container">
+    <%- include ('../partials/head') %>   
+    <ul class="results">
+        <%results.forEach(result =>{%>
+            <li class="result-item">
+                <a href="/movieinfo">
+                    <img class="result-item-image" src="<%=imageBaseUrl+result.poster_path%>" alt="image">
+                    <h3>Title: <%=result.original_title%></h3>
+                    <div class="movie-details">
+                        <p>Rating: <%=result.vote_average%></p>
+                        <p>Count: <%=result.vote_count%></5></p>
+                    </div>
+                    <div class="overview">
+                        <h4>Overview:</h4>
+                        <%=result.overview%>
+                    </div>
+                </a>
+            </li>
+        <%})%>
+    </ul>
+</div>
+
+
+
+
+<!-- <li class="result-item">
+    <a href="/movieinfo">
+        <img src="./movie-img.jpg" alt="image">
+        <h3>Title: movie suman</h3>
+        <p>Ratings</p>
+        <p>Number of users that voted the movie</p>
+        <div class="overview">nagjlsbgjbjgbabgabgjasbjgba</div>
+    </a>
+</li>
+<li class="result-item">
+    <a href="/movieinfo">
+        <img src="./movie-img.jpg" alt="image">
+        <h3>Title: movie suman</h3>
+        <p>Ratings</p>
+        <p>Number of users that voted the movie</p>
+        <div class="overview">nagjlsbgjbjgbabgabgjasbjgba</div>
+    </a>
+</li>
+<li class="result-item">
+    <a href="/movieinfo">
+        <img src="./movie-img.jpg" alt="image">
+        <h3>Title: movie suman</h3>
+        <p>Ratings</p>
+        <p>Number of users that voted the movie</p>
+        <div class="overview">nagjlsbgjbjgbabgabgjasbjgba</div>
+    </a>
+</li> -->
+
+<!-- <div>
+    
+    <div class="results">
+        <div class="result-item">
+            <img src="./movie-img.jpg" alt="image">
+            <h3>title: movie suman</h3>
+            <p>ratings</p>
+            <p>number of users that voted the movie</p>
+        </div>
+        <div class="result-item">
+            <img src="./movie-img.jpg" alt="image">
+            <h3>title: movie suman</h3>
+            <p>ratings</p>
+            <p>number of users that voted the movie</p>
+        </div>
+        <div class="result-item">
+            <img src="./movie-img.jpg" alt="image">
+            <h3>title: movie suman</h3>
+            <p>ratings</p>
+            <p>number of users that voted the movie</p>
+        </div>
+        <div class="result-item">
+            <img src="./movie-img.jpg" alt="image">
+            <h3>title: movie suman</h3>
+            <p>ratings</p>
+            <p>number of users that voted the movie</p>
+        </div>
+    </div>
+</div>  -->
