@@ -28,13 +28,36 @@ router.post('/', (req, res) => {
     } else {
 
         // 2. Check if the email exist in the database
-        
+        const cleanedEmail = email.toLowercase().trim()
+        db.oneOrNone('SELECT * FROM users WHERE email=$1,', cleanedEmail)
+        .then (user => {
+            if(!user) {
+                res.redirect('/login?message=Email%20or%20password%20is%20invalid')
+            } else {
 
+                // 3. If above email validation is passed, verify password and edit session
+                bcrypt.compare(password, user.password)
+                .then(result => {
+                    if(result) {
+                        // 3.1 Edit session and redirect with success message
+                        req.session.userId = user.userId // check whether userId entered is equal to userID stored in db
+                        res.send('Successfully logged in!')
+                    
+                    } else {
+                        res.redirect('/login?message=Email%20or%20password%20is%20incorrect')
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                    res.send(error)
+                })
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            res.send(error)
+        })
     }
-
-
-
-
-
 })
 
+module.exports = router
