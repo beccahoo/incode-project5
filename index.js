@@ -54,6 +54,9 @@ app.get('/movieinfo/:id', async(req, res) => {
 })
 
 
+app.get('/login', (req, res) => {
+    res.render('./pages/login')
+})
 
 
 
