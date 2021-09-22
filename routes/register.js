@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const {firstname, lastname, email, password} = req.body
-    // 1. validate user data (want to include a function to check whether password confirmation is accurate not sure how)
+    // 1. validate user data (want to include a function to check whether password confirmation is accurate haven't figured it how to do this)
+
     // 2. check if the user already exists in the database
     db.oneOrNone("SELECT * FROM users WHERE email =$1,", [email]) // do we have to use cleanedEmail here or email is fine?
     .then(userExists => {
@@ -26,7 +27,7 @@ router.post('/', (req, res) => {
             .then (() => {
                 res.redirect('/login?message=User%20successfully%20created')
             })
-            catch((err) => {
+            .catch((err) => {
                 console.log(err)
                 res.json(err)
             })
