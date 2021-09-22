@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs")
 const db = require('../database') // not yet created database file
 const { check, validationResult } = require('express-validator') // I downloaded express-validator to validate my email and password
 
+// add redirecttoHome if can't logged in --> Home is the movie page
 router.post('/', (req, res) => {
     const {email, password} = req.body
 
@@ -35,7 +36,7 @@ router.post('/', (req, res) => {
                 res.redirect('/login?message=Email%20or%20password%20is%20invalid')
             } else {
 
-                // 3. If above email validation is passed, verify password and edit session
+                // 3. If so, verify password and edit session
                 bcrypt.compare(password, user.password)
                 .then(result => {
                     if(result) {
