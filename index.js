@@ -1,9 +1,13 @@
 const express = require('express');
+
+const loginRouter = require('./routes/login');
+const session = require('express-session')
 // import axios from "axios";
 // import express from "express"
 //import fetch from 'node-fetch';
 const axios = require('axios');
 const expressLayouts = require('express-ejs-layouts')
+
 
 const app = express();
 
@@ -19,6 +23,21 @@ app.set("layout", "./layouts/main")
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
+}))
+
+
+//var for session
+const Time = 1000 * 60 * 60 * 1;
+//cookie session
+app.use(session({
+    name : 'mr_csid',
+    resave : false,
+    saveUninitialized : false,
+    secret : `${process.env.SECRET_SESS_KEY}` || 'lejncjksencc',
+    cookie :{
+        maxAge : Time,
+        sameSite : true,
+    }
 }))
 
 
@@ -52,6 +71,8 @@ app.get('/movieinfo/:id', async(req, res) => {
         imageBaseUrl 
     })
 })
+
+app.use('/login', loginRouter);
 
 
 app.get('/login', (req, res) => {
