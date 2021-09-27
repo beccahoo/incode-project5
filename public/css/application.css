@@ -117,6 +117,7 @@ a{
 /* movie info page */
 
 .movieinfo{
+    color:rgb(197, 194, 194);
     display: flex;
 }
 
