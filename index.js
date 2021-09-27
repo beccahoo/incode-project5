@@ -57,9 +57,9 @@ app.get('/movieinfo/:id', async (req, res) => {
 app.use('/login', loginRouter);
 
 
-app.get('/login', (req, res) => {
-    res.render('./pages/login')
-})
+// app.get('/login', (req, res) => {
+//     res.render('./pages/login')
+// })
 
 
 app.use('/forgotpassword', forgotpasswordRouter);
