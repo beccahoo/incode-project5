@@ -1,8 +1,8 @@
- 
-    <%- include ('../partials/head') %> 
+<%- include ('../partials/head') %> 
 
 <body>
-    <div class="logincontainer">
+<div class = "loginwrapper">
+  <div class="logincontainer">
         <form class="form" id="login" action="/login" method="post">
             <h1 class="form__title">Login</h1>
             <div class="form__message form__message--error"></div>
@@ -57,16 +57,6 @@
             </p>
         </form>
     </div>
+</div>
     <script src="./js/login.js"></script>
 </body>
-
-
-
-<!-- <form action="/login" method="post">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email">
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password">
-    <button>Login</button>
-<!-- </form>
-<!-- >>>>>>> 1fd3de9b9ab35c4479a67a25e8dea93d7e0cfaf4 --> 
