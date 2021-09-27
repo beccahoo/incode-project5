@@ -41,34 +41,15 @@ app.use(session({
 }))
 
 
-
-//api details
-const url = "https://api.themoviedb.org/3";
-imageBaseUrl = 'https://image.tmdb.org/t/p/original';
-const popular_movies = "/movie/popular?";
-const api_key = "api_key=3523b8b1a53ce015b3b81c8ebec8708c";
-var popular_movies_route = url + popular_movies + api_key;
-// console.log(popular_movies_route)
-
-
 app.get('/', async(req, res) => {
-    const data = await axios.get(popular_movies_route)
-    // console.log(data.data.results)
-    res.render('./pages/home', {
-        results: data.data.results,
-        imageBaseUrl
-    })
+    res.render('./pages/home')
     
 })
 
-app.get('/movieinfo/:id', async(req, res) => {
-    const movieIdRoute = `/movie/${req.params.id}?`
-    const individualMovie = url+movieIdRoute+api_key
-    const data = await axios.get(individualMovie)
-    console.log(individualMovie)
+app.get('/movieinfo/:id', async (req, res) => {
+    const {id} = req.params
     res.render('./pages/movieinfo',{
-        result: data.data,
-        imageBaseUrl 
+       id
     })
 })
 

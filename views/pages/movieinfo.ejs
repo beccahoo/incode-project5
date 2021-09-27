@@ -1,25 +1,8 @@
 <div class="container">
     <div class="movieinfo">
-        <div class="image">
-            <img src="<%=imageBaseUrl+result.poster_path%>" alt="image">
-            <div class="genre">
-            </div>
-        </div>
-        <div class="contents">
-            <div class="title">
-                <h2>Title: <%=result.original_title%></h2>
-                <small class="tagline"><%=result.tagline%></small>
-            </div>
-            <div class="contents-body">
-                <p><strong>Description:</strong> <%=result.overview%> </p>
-                <p><strong>Country:</strong>
-                    <%=result.production_countries.map(each => each.name).join(', ')%>
-                </p>
-                <p><strong>Date:</strong>  <%=result.release_date%></p>
-                <p><strong>Runtime:</strong> <%=result.runtime%> mins</p>
-                <p><strong>Rating:</strong> <%=result.vote_average%></p>
-                <p><strong>Count:</strong> <%= result.vote_count%></p>
-            </div>
-        </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>const movie_id = <%= id %></script>
+<script src="/movieinfo.js"></script>
