@@ -1,6 +1,7 @@
 const express = require('express');
 
 const loginRouter = require('./routes/login');
+const forgotpasswordRouter = require('./routes/forgotpassword');
 const session = require('express-session')
 // import axios from "axios";
 // import express from "express"
@@ -79,6 +80,8 @@ app.get('/login', (req, res) => {
     res.render('./pages/login')
 })
 
+
+app.use('/forgotpassword', forgotpasswordRouter);
 
 
 // const url = "https://api.themoviedb.org/3";
