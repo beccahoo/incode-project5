@@ -149,3 +149,112 @@ a{
 .forgotpasswordtext {
     color: white;
 }
+
+
+
+/* /rating css */
+
+.rating-container{
+    padding:20px;
+    color: whitesmoke;
+    text-align: center;
+    width:30%;
+    margin:30vh auto;
+    border:5px solid rgb(250, 101, 101);
+    border-radius: 30px;
+    align-self: center;
+    
+   
+  }
+  
+  .stars{
+    list-style: none;
+    display:flex;
+    /* align-items: center; */
+    justify-content: center;
+    /* background-color: yellowgreen; */
+  }
+  
+  /* .stars:hover li a i{
+    color: yellowgreen;
+  
+  } */
+  
+  ol{
+    width:100%;
+    padding-left: 0;
+  }
+  
+  .stars li a i{
+    font-size: 40px;
+    color: gainsboro;
+    /* align-items: center; */
+    
+  }
+  
+  .stars li a i:hover{
+    color:yellowgreen;
+  }
+  
+  .starss{
+      padding:3px;
+  }
+  .starss.yellowgreen i{
+    color:yellowgreen;
+  }
+  
+  .starss.gray i{
+    color:gray;
+  }
+  
+  .info{
+    font-size:24px;
+   text-align: center;
+   color:yellowgreen;
+   margin-top:20px;
+   margin-bottom:20px;
+  }
+  
+  .star-btn{
+    pointer-events: none;
+    display: block;
+    font-size: 24px;
+    background-color: rgb(172, 169, 169);
+    width:50%;
+    margin:30px auto;
+    cursor: pointer;;
+    padding:10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 5px 3px gray;
+    transition: 0.5s ease-in-out;
+    
+  }
+
+  .star-btn.active{
+      pointer-events: all;
+  }
+  .star-btn:hover{
+    background: yellowgreen;
+    
+    /* color: white !important; */
+  }
+
+ 
+
+.rating-container a{
+    margin-top:20px;
+    color: white;
+}
+
+.star-btn:hover a{
+color:white
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -8,7 +8,7 @@ var popular_movies_route = url + popular_movies + api_key;
 
 $.ajax(popular_movies_route)
     .then(data => {
-    console.log(data.results)
+    // console.log(data.results)
         let unorderedList = $("<ul class='results'>")
         for(let film of data.results) {
             // console.log(film)
