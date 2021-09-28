@@ -1,6 +1,7 @@
 const express =require('express')
 const bcrypt = require('bcrypt')
 const db = require("../database") // have not created the database js script
+const { check } = require('express-validator')
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -10,6 +11,11 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const {firstname, lastname, email, password} = req.body
     // 1. validate user data (want to include a function to check whether password confirmation is accurate haven't figured it how to do this)
+    [check("email", "Please enter valid email")
+    ]
+
+    // normal password - confirm password
+
 
     // 2. check if the user already exists in the database
     db.oneOrNone("SELECT * FROM users WHERE email =$1,", [email]) // do we have to use cleanedEmail here or email is fine?
