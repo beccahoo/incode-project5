@@ -1,4 +1,9 @@
 const express = require('express');
+
+const loginRouter = require('./routes/login');
+const ratingRouter = require('./routes/rating');
+const forgotpasswordRouter = require('./routes/forgotpassword');
+const session = require('express-session')
 // import axios from "axios";
 // import express from "express"
 //import fetch from 'node-fetch';
@@ -34,28 +39,24 @@ var popular_movies_route = url + popular_movies + api_key;
 
 
 app.get('/', async(req, res) => {
-    const data = await axios.get(popular_movies_route)
-    // console.log(data.data.results)
-    res.render('./pages/home', {
-        results: data.data.results,
-        imageBaseUrl
-    })
+    res.render('./pages/home')
     
 })
 
-app.get('/movieinfo/:id', async(req, res) => {
-    const movieIdRoute = `/movie/${req.params.id}?`
-    const individualMovie = url+movieIdRoute+api_key
-    const data = await axios.get(individualMovie)
-    console.log(individualMovie)
+app.get('/movieinfo/:id', async (req, res) => {
+    const { id } = req.params
+    app.locals.movie_id = id
     res.render('./pages/movieinfo',{
-        result: data.data,
-        imageBaseUrl 
+       id
     })
 })
 
+app.use('/login', loginRouter);
 
+app.use('/forgotpassword', forgotpasswordRouter);
 
+//rating
+ app.use('/rating', ratingRouter)
 
 
 // const url = "https://api.themoviedb.org/3";

@@ -1,24 +1,13 @@
 <div class="container">
-    <%- include ('../partials/head') %>   
-    <ul class="results">
-        <%results.forEach(result =>{%>
-            <li class="result-item">
-                <a href="/movieinfo/<%=result.id%>">
-                    <img class="result-item-image" src="<%=imageBaseUrl+result.poster_path%>" alt="image">
-                    <h3>Title: <%=result.original_title%></h3>
-                    <div class="movie-details">
-                        <p>Rating: <%=result.vote_average%></p>
-                        <p>Count: <%=result.vote_count%></5></p>
-                    </div>
-                    <div class="overview">
-                        <h4>Overview:</h4>
-                        <%=result.overview%>
-                    </div>
-                </a>
-            </li>
-        <%})%>
-    </ul>
+    <%- include ('../partials/navbar') %> 
+    <a href='/login'>LOGIN</a>  
+
+    
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="/home.js"></script>
 
 
 

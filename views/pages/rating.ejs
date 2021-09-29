@@ -1,0 +1,23 @@
+<body>
+    <div class="rating-container">
+        <h1>Rating</h1>
+      <ol class="stars">
+        <li><a href="" class="starss"><i class="fas fa-star"></i></a></li>
+        <li><a href="" class="starss"><i class="fas fa-star"></i></a></li>
+        <li><a href="" class="starss"><i class="fas fa-star"></i></a></li>
+        <li><a href="" class="starss"><i class="fas fa-star"></i></a></li>
+        <li><a href="" class="starss"><i class="fas fa-star"></i></a></li>
+      </ol>
+      <div class="info"></div>
+      <button class="star-btn">Submit</button>
+      <!-- <button class="star-btn">Submit</button> -->
+    
+      <a href="/movieinfo/<%=movie_id%>" class="back-btn">Back to the Details</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/34140e5df6.js" crossorigin="anonymous"></script>
+    <script>const movie_id = <%= movie_id %></script>
+    <script src="/rating.js"></script>
+</body>
+
