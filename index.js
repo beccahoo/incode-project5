@@ -17,36 +17,6 @@ const genres =  [
 
 const tagsE1 = document.getElementById("tags");
 
-varselectedGenre=[]
-setGenre();
-function setGenre() {
-    tagsE1.innerHTML= '';
-    genres.forEach(genre => {
-        const t = document.createElement('div');
-        t.classList.add('tag');
-        t.id=genre.id;
-        t.innerText = genre.name;
-        t.addEventListener('click', () => {
-            if(selectedGenre.length == 0){
-                selectedGenre.push(genre.id);
-            } else {
-                if(selectedGenre.includes(genre.id)){
-                     selectedGenre.forEach((id, idx) => {
-                         if(id == genre.id){
-                        selectedGenre.splice(idx, 1); 
-                    }
-                })
-             }else{
-                 selectedGenre.push(genre.id);
-             }
-            }
-            console.log(selectedGenre)
-        })
-        tagsE1.append(t);
-    })
-
-}
-
 
 
 //setting view enginne and layouts
@@ -73,6 +43,52 @@ const popular_movies = "/movie/popular?";
 const api_key = "api_key=3523b8b1a53ce015b3b81c8ebec8708c";
 var popular_movies_route = url + popular_movies + api_key;
 // console.log(popular_movies_route)
+
+// Filtering Genres -> getting the results from API
+varselectedGenre=[]
+setGenre();
+function setGenre() {
+    tagsE1.innerHTML= '';
+    genres.forEach(genre => {
+        const t = document.createElement('div');
+        t.classList.add('tag');
+        t.id=genre.id;
+        t.innerText = genre.name;
+        t.addEventListener('click', () => {
+            if(selectedGenre.length == 0){
+                selectedGenre.push(genre.id);
+            } else {
+                if(selectedGenre.includes(genre.id)){
+                     selectedGenre.forEach((id, idx) => {
+                         if(id == genre.id){
+                        selectedGenre.splice(idx, 1); 
+                    }
+                })
+             }else{
+                 selectedGenre.push(genre.id);
+             }
+            }
+            console.log(selectedGenre)
+            getMovies(API_URL + '&with_genres='+encodeURI(selectedGenre.join(',')))
+            highlightSelection()
+        })
+        tagsE1.append(t);
+    })
+
+}
+
+function highlightSelection()  {
+    document.querySelectorAll('.tag')
+    tags.forEach(tag => {
+        tag.classlist.remove('highlight')
+    })
+    if(selectedGenre.length !=0) {
+        selectedGenre.forEach(id => {
+            const highlightedTag = document.getElementById(id);
+            hightlightedTag.classlist.add('highlight');
+        })
+    }
+}
 
 
 app.get('/', async(req, res) => {
