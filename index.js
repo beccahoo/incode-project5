@@ -15,6 +15,38 @@ const genres =  [
     {"id":28,"name":"Action"},{"id":12,"name":"Adventure"},{"id":16,"name":"Animation"},{"id":35,"name":"Comedy"},{"id":80,"name":"Crime"},{"id":99,"name":"Documentary"},{"id":18,"name":"Drama"},{"id":10751,"name":"Family"},{"id":14,"name":"Fantasy"},{"id":36,"name":"History"},{"id":27,"name":"Horror"},{"id":10402,"name":"Music"},{"id":9648,"name":"Mystery"},{"id":10749,"name":"Romance"},{"id":878,"name":"Science Fiction"},{"id":10770,"name":"TV Movie"},{"id":53,"name":"Thriller"},{"id":10752,"name":"War"},{"id":37,"name":"Western"}
 ]
 
+const tagsE1 = document.getElementById("tags");
+
+varselectedGenre=[]
+setGenre();
+function setGenre() {
+    tagsE1.innerHTML= '';
+    genres.forEach(genre => {
+        const t = document.createElement('div');
+        t.classList.add('tag');
+        t.id=genre.id;
+        t.innerText = genre.name;
+        t.addEventListener('click', () => {
+            if(selectedGenre.length == 0){
+                selectedGenre.push(genre.id);
+            } else {
+                if(selectedGenre.includes(genre.id)){
+                     selectedGenre.forEach((id, idx) => {
+                         if(id == genre.id){
+                        selectedGenre.splice(idx, 1); 
+                    }
+                })
+             }else{
+                 selectedGenre.push(genre.id);
+             }
+            }
+            console.log(selectedGenre)
+        })
+        tagsE1.append(t);
+    })
+
+}
+
 
 
 //setting view enginne and layouts
