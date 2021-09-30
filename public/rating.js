@@ -45,8 +45,11 @@ starBtn.addEventListener('click', (e) => {
     }).then(res => {
         console.log(res)
         if (res.status) {
-            //console.log(1)
+            console.log(1)
             backBtn.click()
+        } else {
+            console.log(2)
+            
         }
         
     })

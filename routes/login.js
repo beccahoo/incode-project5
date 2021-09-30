@@ -54,28 +54,35 @@ router.post(
           // bcrypt code
          // console.log(password)
          
-           // bcrypt.compare(password, user.password, (err, result) => {
-          //     if (result) {
-          //       req.session.userId = user.user_id;
-          //       req.session.userEmail = user.email;
-          //       res.redirect('/');
-          //     } else {
-          //       console.log(err)
-          //       res.redirect(
-          //         '/login?message=Email%20or%20password%20is%20incorrect.'
-          //       );
-          //     }
-          // });
+           bcrypt.compare(password, user.password, (err, result) => {
+              if (result) {
+                req.session.userId = user.user_id;
+                req.session.userEmail = user.email;
+                movie_id = req.app.locals.movie_id
+                return res.render('./pages/movieinfo', {
+                  id: movie_id
+                });
+              } else {
+                console.log(err)
+                return res.render('./pages/login', {
+                   message: 'Email or password is incorrect.',
+                  });
+              }
+          });
           
-            if (password === user.password) {
-              req.session.userId = user.user_id;
-              req.session.userEmail = user.email;
-              return res.redirect('/');
-            } else {
-              return res.render('./pages/login', {
-                message: 'Email or password is incorrect.',
-              });
-            }
+            // if (password === user.password) {
+            //   req.session.userId = user.user_id;
+            //   req.session.userEmail = user.email;
+            //   movie_id = req.app.locals.movie_id
+            //   // console.log(movie_id)
+            //   return res.render('./pages/movieinfo', {
+            //     id:movie_id
+            //   });
+            // } else {
+            //   return res.render('./pages/login', {
+            //     message: 'Email or password is incorrect.',
+            //   });
+            // }
         }
       }
     } catch (err) {
