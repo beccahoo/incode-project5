@@ -10,16 +10,11 @@ const session = require('express-session')
 //import fetch from 'node-fetch';
 const axios = require('axios');
 const expressLayouts = require('express-ejs-layouts')
-const loginRouter = require('./routes/login')
+
+
 const app = express();
-const genres =  [
-    {"id":28,"name":"Action"},{"id":12,"name":"Adventure"},{"id":16,"name":"Animation"},{"id":35,"name":"Comedy"},{"id":80,"name":"Crime"},{"id":99,"name":"Documentary"},{"id":18,"name":"Drama"},{"id":10751,"name":"Family"},{"id":14,"name":"Fantasy"},{"id":36,"name":"History"},{"id":27,"name":"Horror"},{"id":10402,"name":"Music"},{"id":9648,"name":"Mystery"},{"id":10749,"name":"Romance"},{"id":878,"name":"Science Fiction"},{"id":10770,"name":"TV Movie"},{"id":53,"name":"Thriller"},{"id":10752,"name":"War"},{"id":37,"name":"Western"}
-]
-// Genre movie genre tags 
-const tagsE1 = document.getElementById("tags");
 
-
-//setting view engine and layouts
+//setting view enginne and layouts
 app.set('view engine', 'ejs')
 app.set('views', 'views');
 app.use(express.static('public'));
@@ -33,94 +28,20 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-//route middleware
-app.use('/login', loginRouter)
 
-//api details
-const url = "https://api.themoviedb.org/3";
-imageBaseUrl = 'https://image.tmdb.org/t/p/original';
-const popular_movies = "/movie/popular?";
-const api_key = "api_key=3523b8b1a53ce015b3b81c8ebec8708c";
-var popular_movies_route = url + popular_movies + api_key;
-// console.log(popular_movies_route)
-
-// Filtering Genres -> getting the results from API
-varselectedGenre=[]
-setGenre();
-function setGenre() {
-    tagsE1.innerHTML= '';
-    genres.forEach(genre => {
-        const t = document.createElement('div');
-        t.classList.add('tag');
-        t.id=genre.id;
-        t.innerText = genre.name;
-        t.addEventListener('click', () => {
-            if(selectedGenre.length == 0){
-                selectedGenre.push(genre.id);
-            } else {
-                if(selectedGenre.includes(genre.id)){
-                     selectedGenre.forEach((id, idx) => {
-                         if(id == genre.id){
-                        selectedGenre.splice(idx, 1); 
-                    }
-                })
-             }else{
-                 selectedGenre.push(genre.id);
-             }
-            }
-            console.log(selectedGenre)
-            getMovies(API_URL + '&with_genres='+encodeURI(selectedGenre.join(',')))
-            highlightSelection()
-        })
-        tagsE1.append(t);
-    })
-
-}
-
-// Add highlight selection function for users to know what genres have been selected
-function highlightSelection()  {
-    document.querySelectorAll('.tag')
-    tags.forEach(tag => {
-        tag.classlist.remove('highlight')
-    })
-    if(selectedGenre.length !=0) {
-        selectedGenre.forEach(id => {
-            const highlightedTag = document.getElementById(id);
-            hightlightedTag.classlist.add('highlight');
-        })
+//var for session
+const Time = 1000 * 60 * 60 * 1;
+//cookie session
+app.use(session({
+    name : 'mr_csid',
+    resave : false,
+    saveUninitialized : false,
+    secret : `${process.env.SECRET_SESS_KEY}` || 'lejncjksencc',
+    cookie :{
+        maxAge : Time,
+        sameSite : true,
     }
-}
-
-function clearBtn() {
-    let clearBtn = document.getElementById('clear');
-    if(clearBtn) {
-        clearBtn.classList.add('highlight')
-    } else {
-
-        let clear = document.createElement('div')
-        clear.classList.add('tag', 'highlight');
-        clear.id = 'clear';
-        clear.innerText = 'Clear x';
-        clear.addEventListener('click', () => {
-            selectedGenre = [];
-            setGenre();
-            getMovies(API_URL);
-        })
-        tagsE1.append(clear); 
-    }
-}
-
-getMovies(API_URL);
-function getMovies(url) {
-    fetch(url).then(res => res,json()).then(data => {
-        console.log(data.results)
-        if(data.results.length !== 0){
-        showMovies(data.results);
-        } else {
-            main.innerHTML = `<h1 class="no-results">No Results Found </h1>`
-        }
-    })
-}
+}))
 
 
 app.get('/', async(req, res) => {
