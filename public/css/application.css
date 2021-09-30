@@ -34,6 +34,19 @@ a{
     outline: none;
 }
 
+/* genre select option */
+#genre{
+    padding:10px;
+    display: block;
+    margin:5px auto;
+    width:200px;
+}
+
+.option-genre{
+    background-color: #1b1d27;
+    color: white;
+   
+}
 
 /* whole container in the home page */
 .container{
@@ -95,6 +108,7 @@ a{
 
 /* style for the overview of the the image which is displayed after hovering the individual result div */
 .overview{
+    font-size:20px;
     background-color: white;
     color: rgb(7, 0, 0);
     padding:10px;
@@ -250,10 +264,33 @@ a{
 color:white
 }
   
-  
-  
-  
-  
+#tags{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.tag{
+    color: white;
+    padding: 10px 20px;
+    background-color: orange;
+    border-radius: 50px;
+    margin: 5px;
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+.taghighlight{
+    background-color: red;
+}
+
+.no-results{
+    color: white;
+}
   
   
   
