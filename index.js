@@ -1,6 +1,7 @@
 const express = require('express');
 
 const loginRouter = require('./routes/login');
+const registerRoute = require('./routes/register')
 const ratingRouter = require('./routes/rating');
 const forgotpasswordRouter = require('./routes/forgotpassword');
 const session = require('express-session')
@@ -136,6 +137,8 @@ app.get('/movieinfo/:id', async (req, res) => {
 })
 
 app.use('/login', loginRouter);
+
+app.use('/register', registerRoute);
 
 app.use('/forgotpassword', forgotpasswordRouter);
 
