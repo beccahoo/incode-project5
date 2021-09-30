@@ -1,20 +1,13 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcryptjs');
-const db = require('../database'); // not yet created database file
-const { check, validationResult } = require('express-validator'); // I downloaded express-validator to validate my email and password
-
-router.get('/', async (req, res) => {
-  try {
-    res.render('./pages/login', {
-      message:req.query.message
-    });
-  } catch {
-    console.log(err);
-  }
-});
-
+const express = require('express')
+const router = express.Router()
+const bcrypt = require("bcryptjs")
+const db = require('../database') // not yet created database file
+const { check, validationResult } = require('express-validator') // I downloaded express-validator to validate my email and password
+// router.get('/login', (req, res) => {
+//     res.render('./pages/login')
+// })
 // add redirecttoHome if can't logged in --> Home is the movie page
+
 router.post(
   '/',
   // 1. Validate email and password
@@ -83,13 +76,12 @@ router.post(
             //     message: 'Email or password is incorrect.',
             //   });
             // }
-        }
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-);
-// 1.1 Insert validation, display error and render login page again
 
-module.exports = router;
+        }
+        catch (err) {
+            console.log(err)
+        }
+    })
+);
+    // 1.1 Insert validation, display error and render login page again
+module.exports = router
