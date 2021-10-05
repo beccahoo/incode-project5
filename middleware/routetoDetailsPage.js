@@ -10,6 +10,7 @@ function routetoDetailsPage(req, res, next) {
             if (data.length !== 0) {
                 return res.render('./pages/movieinfo', {
                     id: movie_id,
+                    loginCheck:req.session.userId,
                     rateMsg: 'You have already rated this Movie'
                 })
             
