@@ -58,9 +58,13 @@ router.post(
               if (result) {
                 req.session.userId = user.user_id;
                 req.session.userEmail = user.email;
-                movie_id = req.app.locals.movie_id
+                movie_id = req.app.locals.movie_id;
+                if (movie_id === 0) {
+                  return res.redirect('/')
+                }
                 return res.render('./pages/movieinfo', {
-                  id: movie_id
+                  id: movie_id,
+                  loginCheck: req.session.userId
                 });
               } else {
                 console.log(err)

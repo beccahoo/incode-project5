@@ -3,6 +3,7 @@ const express = require('express');
 const loginRouter = require('./routes/login');
 const registerRoute = require('./routes/register')
 const ratingRouter = require('./routes/rating');
+const logoutRouter = require('./routes/logout')
 const forgotpasswordRouter = require('./routes/forgotpassword');
 const session = require('express-session')
 // import axios from "axios";
@@ -44,8 +45,11 @@ app.use(session({
 }))
 
 
-app.get('/', async(req, res) => {
-    res.render('./pages/home')
+app.get('/', async (req, res) => {
+    app.locals.movie_id = 0;
+    res.render('./pages/home', {
+        loginCheck: req.session.userId
+    })
     
 })
 
@@ -53,7 +57,8 @@ app.get('/movieinfo/:id', async (req, res) => {
     const { id } = req.params
     app.locals.movie_id = id
     res.render('./pages/movieinfo',{
-       id
+        id,
+        loginCheck: req.session.userId
     })
 })
 
@@ -64,7 +69,10 @@ app.use('/register', registerRoute);
 app.use('/forgotpassword', forgotpasswordRouter);
 
 //rating
- app.use('/rating', ratingRouter)
+app.use('/rating', ratingRouter);
+
+//logout
+app.use('/logout', logoutRouter);
 
 
 // const url = "https://api.themoviedb.org/3";

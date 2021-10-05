@@ -1,12 +1,18 @@
+<%if (typeof loginCheck != "undefined"){%>
+    <%- include ('../partials/navlogin') %> 
+<%}else{%>
+    <%- include ('../partials/navbar') %> 
+<%}%>
+
 <%if(typeof rateMsg !== 'undefined'){%>
     <p style="color:green; font-size: 24px;text-align: center;"><%= rateMsg%> </p>
 <%}%>
-<div class="container">
+<!-- <div class="container"></div> -->
     <div class="movieinfo">
        
        
     </div>
-</div>
+<!-- </div> -->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>const movie_id = <%= id %></script>

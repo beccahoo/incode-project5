@@ -7,11 +7,9 @@ var popular_movies_route = url + popular_movies + api_key;
 var searchUrl = url + '/search/movie' + api_key;
 
 let genreUrl = url + '/genre/movie/list' + api_key
+
 getGenre(genreUrl);
-
-
-
-
+getMovies(popular_movies_route);
 
 $(".search-bar").on('submit', (e) => {
     e.preventDefault();
@@ -26,11 +24,27 @@ $(".search-bar").on('submit', (e) => {
     
 })
 
+$(".genre").on("change", (e) => {
+    e.preventDefault();
+    //console.log(1)
+    //console.log($("#genre").val())
+    let genre_name = $("#genre").val();
+    // console.log(genre_name.length)
+    if (genre_name.length > 0) {
+        discoverMoviesUrl = 'https://api.themoviedb.org/3/discover/movie' + api_key + `&with_genres=${genre_name}`;
+        //console.log(discoverMoviesUrl)
+        getMovies(discoverMoviesUrl);
+    } else {
+        getMovies(popular_movies_route)
+    }
+    
+})
 
 
 
 
-getMovies(popular_movies_route)
+
+
 
 function getMovies(url) {
     $.ajax(url)
@@ -45,7 +59,7 @@ function getMovies(url) {
 
 
 function showMovies(data) {
-    $(".result-body").empty()
+    $(".container").append($(".result-body").empty())
     // $('.container').append($(".result-body").html(''))
     let unorderedList = $("<ul class='results'>")
         for(let film of data.results) {
@@ -80,26 +94,12 @@ function getGenre(url) {
             select.append(`<option class='option-genre' value="">Select the Genre`)
             for (let gen of genre.genres) {
                 // console.log(gen)
-                select.append(`<option class='option-genre' value="${gen.name}">${gen.name}`)
+                select.append(`<option class='option-genre' value="${gen.id}">${gen.name}`)
             }
             $(".genre").append(select)
             $('.container').append($(".genre"))
 
-            $(".genre").on("change", (e) => {
-                e.preventDefault();
-                //console.log(1)
-                console.log($("#genre").val())
-                genre_name = $("#genre").val();
-                console.log(genre_name.length)
-                if (genre_name.length > 0) {
-                    discoverMoviesUrl = 'https://api.themoviedb.org/3/discover/movie' + api_key + '&with_genres=';
-                    console.log(discoverMoviesUrl)
-                    getMovies(discoverMoviesUrl);
-                } else {
-                    getMovies(popular_movies_route)
-                }
-                
-            })
+            
 
             
         })
